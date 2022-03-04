@@ -1,4 +1,5 @@
 from tkinter import *
+import re
 exec(open("calculator.py").read())
 
 
@@ -30,8 +31,9 @@ def bt_clear():
  
 def bt_equal():
     global expression
+    list_e = re.split('(\W)', expression)
     from calculator import calculate
-    c = calculate(expression)
+    c = calculate(int(list_e[0]), list_e[1], int(list_e[2]))
     result = str(c.calculate_function())
     input_text.set(result)
     expression = ""
